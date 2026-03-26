@@ -1,0 +1,77 @@
+# ABF to NWB for IPFX
+
+This repository converts Axon Binary Format (`.abf`) electrophysiology recordings into NWB files
+that can be loaded by the Allen Institute's `ipfx` package.
+
+The main use case is:
+
+- start with an `.abf` recording in [data](/Users/dmoracze/uv/abf2nwb/data)
+- convert it to NWB with [abf2nwb.py](/Users/dmoracze/uv/abf2nwb/abf2nwb.py)
+- load the NWB file with `ipfx` for downstream analysis
+
+The converter writes a single-electrode current-clamp NWB file with:
+
+- `CurrentClampSeries` response data
+- `CurrentClampStimulusSeries` command data
+- icephys intracellular recording tables
+- the deprecated `sweep_table` that `ipfx` still expects
+
+## Basic Use
+
+Convert an ABF file into an NWB file:
+
+```bash
+source .venv/bin/activate
+python abf2nwb.py data/2024_12_13_0020_for_nwb.abf -o 2024_12_13_0020_ipfx.nwb
+```
+
+For the bundled `data/2024_12_13_0020_for_nwb.abf`, the converter auto-detects channel 0 as the
+current-clamp response channel.
+
+Optional flags:
+
+- `--response-channel N` to force a specific ABF channel
+- `--stimulus-description CODE` to set the IPFX stimulus code written to NWB metadata
+- `--timezone America/New_York` to localize the ABF recording timestamp
+
+## Example
+
+An end-to-end example that converts the bundled sample ABF file and imports it with `ipfx` lives
+at [example/convert_and_import_ipfx.py](/Users/dmoracze/uv/abf2nwb/example/convert_and_import_ipfx.py).
+
+Run it with:
+
+```bash
+source .venv/bin/activate
+python example/convert_and_import_ipfx.py
+```
+
+Run the integration test with:
+
+```bash
+source .venv/bin/activate
+python -m unittest tests.test_ipfx_import
+```
+
+## From Scratch
+
+Install `uv`:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Clone the repository, create the environment, and install dependencies:
+
+```bash
+git clone <your-repo-url>
+cd abf2nwb
+uv sync
+source .venv/bin/activate
+```
+
+Then verify the setup:
+
+```bash
+python -m unittest tests.test_ipfx_import
+```
