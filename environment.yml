@@ -1,0 +1,12 @@
+name: abf2nwb
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy>=2.3.3
+  - pynwb>=3.1.2
+  - jupyter>=1.1.1
+  - pip
+  - pip:
+      - ipfx>=2.1.2
+      - pyabf>=2.3.8

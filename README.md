@@ -21,7 +21,7 @@ The converter writes a single-electrode current-clamp NWB file with:
 Convert an ABF file into an NWB file:
 
 ```bash
-source .venv/bin/activate
+# Activate your environment first (Conda or uv/.venv), then run:
 python abf2nwb.py data/2024_12_13_0020_for_nwb.abf -o 2024_12_13_0020_ipfx.nwb
 ```
 
@@ -45,35 +45,80 @@ at [example/convert_and_import_ipfx.py](/Users/dmoracze/uv/abf2nwb/example/conve
 Run it with:
 
 ```bash
-source .venv/bin/activate
+# Activate your environment first (Conda or uv/.venv), then run:
 python example/convert_and_import_ipfx.py
 ```
 
 Run the integration test with:
 
 ```bash
-source .venv/bin/activate
+# Activate your environment first (Conda or uv/.venv), then run:
 python -m unittest tests.test_ipfx_import
 ```
 
 ## From Scratch
 
-Install `uv`:
+Choose one environment manager.
+
+### Option A: Conda (Anaconda/Miniconda)
+
+Create the environment:
 
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
+conda env create -f environment.yml
+conda activate abf2nwb
 ```
 
-Clone the repository, create the environment, and install dependencies:
+Windows PowerShell:
+
+```powershell
+conda env create -f environment.yml
+conda activate abf2nwb
+```
+
+Clone the repository and enter it:
 
 ```bash
 git clone <your-repo-url>
 cd abf2nwb
+```
+
+If you cloned first, run:
+
+```bash
+conda env create -f environment.yml
+conda activate abf2nwb
+```
+
+### Option B: uv
+
+Create and sync the uv environment:
+
+```bash
 uv sync
+```
+
+Activate it:
+
+macOS/Linux:
+
+```bash
 source .venv/bin/activate
 ```
 
-Then verify the setup:
+Windows PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+Windows Command Prompt:
+
+```bat
+.venv\Scripts\activate.bat
+```
+
+Then verify setup with:
 
 ```bash
 python -m unittest tests.test_ipfx_import
