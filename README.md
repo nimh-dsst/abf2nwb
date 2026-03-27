@@ -94,12 +94,6 @@ source .venv/bin/activate
 
 Windows PowerShell:
 
-```powershell
-.venv\Scripts\Activate.ps1
-```
-
-Windows Command Prompt:
-
 ```bat
 .venv\Scripts\activate.bat
 ```
