@@ -76,15 +76,6 @@ conda env create -f environment.yml
 conda activate abf2nwb
 ```
 
-Windows PowerShell:
-
-```powershell
-git clone <your-repo-url>
-cd abf2nwb
-conda env create -f environment.yml
-conda activate abf2nwb
-```
-
 ### Option B: uv
 
 Create and sync the uv environment:
