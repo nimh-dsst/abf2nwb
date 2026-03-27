@@ -58,44 +58,42 @@ python -m unittest tests.test_ipfx_import
 
 ## From Scratch
 
-Choose one environment manager.
+Use one of the complete setups below.
 
-### Option A: Conda (Anaconda/Miniconda)
+### Windows + Conda (Anaconda/Miniconda)
 
-Clone the repository and enter it:
+1. Open Anaconda Prompt (or Command Prompt with Conda initialized).
+2. Clone the repository and enter it.
+3. Create and activate the Conda environment from `environment.yml`.
+4. Run the integration test.
+5. Run a sample conversion.
 
-```bash
+```bat
 git clone <your-repo-url>
 cd abf2nwb
-```
-
-Create the environment:
-
-```bash
 conda env create -f environment.yml
 conda activate abf2nwb
-```
-
-### Option B: uv
-
-Create and sync the uv environment:
-
-```bash
-uv sync
-```
-
-Activate it:
-
-macOS/Linux:
-
-```bash
-source .venv/bin/activate
-```
-
-Then verify setup with:
-
-```bash
 python -m unittest tests.test_ipfx_import
+python abf2nwb.py data/2024_12_13_0020_for_nwb.abf -o 2024_12_13_0020_ipfx.nwb
+```
+
+### macOS/Linux + uv
+
+1. Install `uv` (if needed).
+2. Clone the repository and enter it.
+3. Create and sync the local environment.
+4. Activate `.venv`.
+5. Run the integration test.
+6. Run a sample conversion.
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+git clone <your-repo-url>
+cd abf2nwb
+uv sync
+source .venv/bin/activate
+python -m unittest tests.test_ipfx_import
+python abf2nwb.py data/2024_12_13_0020_for_nwb.abf -o 2024_12_13_0020_ipfx.nwb
 ```
 
 For a step-by-step notebook walkthrough, see
