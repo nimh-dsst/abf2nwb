@@ -62,6 +62,13 @@ Choose one environment manager.
 
 ### Option A: Conda (Anaconda/Miniconda)
 
+Clone the repository and enter it:
+
+```bash
+git clone <your-repo-url>
+cd abf2nwb
+```
+
 Create the environment:
 
 ```bash
@@ -72,20 +79,8 @@ conda activate abf2nwb
 Windows PowerShell:
 
 ```powershell
-conda env create -f environment.yml
-conda activate abf2nwb
-```
-
-Clone the repository and enter it:
-
-```bash
 git clone <your-repo-url>
 cd abf2nwb
-```
-
-If you cloned first, run:
-
-```bash
 conda env create -f environment.yml
 conda activate abf2nwb
 ```
