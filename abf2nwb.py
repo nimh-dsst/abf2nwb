@@ -34,7 +34,10 @@ def parse_args() -> argparse.Namespace:
         "-o",
         "--output",
         type=Path,
-        help="Output NWB path. Defaults to the ABF filename with .nwb extension.",
+        help=(
+            "Output NWB path. Defaults to the ABF filename with .nwb extension. "
+            "If a bare filename is provided, it is written under data/."
+        ),
     )
     parser.add_argument(
         "--response-channel",
@@ -89,6 +92,22 @@ def default_output_path(abf_path: Path) -> Path:
 
     stem = abf_path.stem.removesuffix("_for_nwb")
     return abf_path.with_name(f"{stem}.nwb")
+
+
+def resolve_output_path(abf_path: Path, output_path: Path | None) -> Path:
+    """Resolve where to write NWB output.
+
+    Rules:
+    - no `--output`: write next to the ABF input
+    - `--output` with a directory component: use exactly that path
+    - `--output` as a bare filename: write it under `data/`
+    """
+
+    if output_path is None:
+        return default_output_path(abf_path)
+    if output_path.parent == Path("."):
+        return Path("data") / output_path
+    return output_path
 
 
 def ensure_timezone(dt: datetime, timezone_name: str) -> datetime:
@@ -276,7 +295,7 @@ def main() -> None:
     """Run the command-line converter and print the written NWB path."""
 
     args = parse_args()
-    output_path = args.output or default_output_path(args.abf_path)
+    output_path = resolve_output_path(args.abf_path, args.output)
     written_path = convert_abf_to_nwb(
         abf_path=args.abf_path,
         output_path=output_path,

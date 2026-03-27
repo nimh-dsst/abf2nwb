@@ -25,6 +25,9 @@ source .venv/bin/activate
 python abf2nwb.py data/2024_12_13_0020_for_nwb.abf -o 2024_12_13_0020_ipfx.nwb
 ```
 
+The command above writes `data/2024_12_13_0020_ipfx.nwb`. Bare output filenames are placed in
+`data/`; provide a path with a directory if you want a different location.
+
 For the bundled `data/2024_12_13_0020_for_nwb.abf`, the converter auto-detects channel 0 as the
 current-clamp response channel.
 

@@ -16,7 +16,7 @@ def main() -> None:
     """Convert the bundled sample ABF file and load the result with IPFX."""
 
     abf_path = Path("data/2024_12_13_0020_for_nwb.abf")
-    output_path = Path("example_output.nwb")
+    output_path = Path("data/example_output.nwb")
 
     convert_abf_to_nwb(
         abf_path=abf_path,
