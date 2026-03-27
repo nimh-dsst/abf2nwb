@@ -92,12 +92,6 @@ macOS/Linux:
 source .venv/bin/activate
 ```
 
-Windows PowerShell:
-
-```bat
-.venv\Scripts\activate.bat
-```
-
 Then verify setup with:
 
 ```bash
