@@ -13,3 +13,5 @@ wheels/
 # Project-specific local artifacts
 NWB conversion notes.docx
 *.nwb
+.DS_Store
+.ipynb_checkpoints/
