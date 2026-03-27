@@ -78,3 +78,6 @@ Then verify the setup:
 ```bash
 python -m unittest tests.test_ipfx_import
 ```
+
+For a step-by-step notebook walkthrough, see
+[example/convert_and_import_ipfx.ipynb](/Users/dmoracze/uv/abf2nwb/example/convert_and_import_ipfx.ipynb).
