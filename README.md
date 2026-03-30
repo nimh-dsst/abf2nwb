@@ -3,6 +3,8 @@
 This repository converts Axon Binary Format (`.abf`) electrophysiology recordings into NWB files
 that can be loaded by the Allen Institute's `ipfx` package.
 
+Parts of the code in this repository were developed with assistance from OpenAI Codex.
+
 The main use case is:
 
 - start with an `.abf` recording in [data](/Users/dmoracze/uv/abf2nwb/data)
